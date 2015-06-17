@@ -1,0 +1,191 @@
+\documentclass[11pt, a4 paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{scrextend}
+\usepackage[pdftex]{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+
+\newenvironment{tabbed}{\begin{addmargin}{0.1cm}}{\end{addmargin}}
+\newcommand{\sectiontitle}[1]{\begin{center} \Large\textbf{{#1}} \end{center}}
+\newcommand{\sectionundertitle}[1]{\hspace{-0.5cm} \textbf{{#1}}}
+\newcommand{\vsp}{\vspace{0.2cm}}
+
+\title{FYS1120 - Oblig 2}
+\author{Alfred Alocias Mariadason}
+\date{24.10.2014}
+
+\begin{document}
+\maketitle
+
+\sectiontitle{Oppgave.1: Partikkel i elektrisk felt}
+\sectionundertitle{a.) Partikkelens x-posisjon som funksjon av tid.}
+    \begin{tabbed}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.5]{E_field_a.png}
+        \end{figure}
+        Ser her at partikkelen har en akselerasjon siden posisjonen øker eksponensielt.
+    \end{tabbed}\vsp
+\sectionundertitle{b.) Analytisk løsning}
+    \begin{tabbed}
+        Akselerasjon er av definisjon den deriverte av hastighet som igjen er den deriverte av hastighet (med hensyn på tid selvsagt). Dette gjelder forøvrig bare hvis akselerasjonen er konstant, noe den er siden summen av kreftene som virker på partikkelen er konstant, dette fordi E-feltet er konstant og den eneste kraften som virker er den kraften som E-feltet bidrar med. Av dette er da akselerasjonen definert som den andrederiverte av posisjon. Bruker vi da definisjon av E-feltet og newton's andre lov har vi at(merk at vi her bare ser på x-retning siden E-feltet er 0 i de andre retningene):
+        \begin{align*}
+            F &= ma\\
+            E &= \frac{F}{q} \Rightarrow a = \frac{qE}{m} = \frac{d^2r}{dt^2} \\
+            \intertext{Integrerer dette to ganger og får:}
+            r(t) &= r_0 + v_0t + \frac{qE}{2m}t^2
+            \intertext{Setter vi initsialverdiene $r_0$ og $v_0$ til å være lik $0$ har vi:}
+            r(t) &= \frac{qE}{2m}t^2
+        \end{align*}
+        Et plot av denne i samme plot gir:
+        \begin{figure}[H]
+            \captionsetup[subfigure]{labelformat=empty}
+            \begin{subfigure}[b!]{0.6\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{b.png}
+                \caption{Approximated with analytical}
+            \end{subfigure}
+            \begin{subfigure}[b!]{0.6\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{b_zoomed.png}
+                \caption{Zoomed in to see error}
+            \end{subfigure}
+        \end{figure}
+        Ser her at en $dt=10^{-4}$ gir veldig liten avvik fra den analytiske løsningen.
+    \end{tabbed}
+\newpage
+\sectionundertitle{c.) $\vec{E} = (1,2,-5)$}
+    \begin{tabbed}
+        Med et nytt E-felt ser plottet slik ut:
+    \end{tabbed}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.6]{c_xyz.png}
+        \end{figure}
+    \begin{tabbed}
+        Man kan se at dette er en ballistisk bevegelse fordi hastigheten er lineær i z-retning. Kan også argumentere for at det bare virker en kraft på partikkelen som er den elektriske kraften fra E-feltet.
+    \end{tabbed}\vsp
+\newpage
+\sectionundertitle{d.) 3D-plot}
+        \begin{tabbed}
+            Et 3D-plot av posisjonen til partikkelen ser slik ut:
+            \begin{figure}[H]
+                \centering
+                \includegraphics[scale=0.65]{c_3d.png}
+            \end{figure}
+            Ser også her at banen til partikkelen ligner en ballistisk bevegelse.
+        \end{tabbed}
+\newpage
+\sectiontitle{Oppgave.2: Partikkel i magnetisk felt}
+\sectionundertitle{a.) x-posisjon som funksjon av tid.}
+    \begin{tabbed}
+        Med en endring av kraften i forige program ser plottet slik ut:
+        \begin{figure}[H]
+        \centering
+            \includegraphics[scale=0.5]{B-field_xyz.png}
+        \end{figure}
+        Banen i 3D ser slik ut:
+        \begin{figure}[H]
+        \centering
+            \includegraphics[scale=0.6]{B-field_3d.png}
+        \end{figure}
+    \end{tabbed}\vsp
+\sectionundertitle{b.) Omløpstiden}
+    \begin{tabbed}
+        Omløpstiden er på ca. $1.4s$.
+    \end{tabbed}\vsp
+\sectionundertitle{c.) Syklotronfrekvens}
+    \begin{tabbed}
+        Vi kan starte med å se på sentripetalkraft og magnetisk kraft. Siden den magnetiske kraften er den eneste kraften som virker må naturligvis disse to kraftene være like hverandre.
+        \begin{align*}
+            m\frac{v^2}{r} &= qvB \Rightarrow v = \frac{qBr}{m}
+            \intertext{Så kan vi introdusere angulær frekvens(syklotronfrekvens)}
+            \omega_c &= \frac{v}{r}
+            \intertext{Setter vi inn for v får vi:}
+            \omega_c &= \frac{v}{r} = \frac{qBr}{mr}\\
+            \omega_c &= \frac{qB}{m}
+            \intertext{For å finne omløpstiden kan vi bare bruke at hastighet i en sirkelbane er gitt ved $v=\frac{2\pi r}{T}$:}
+            \omega_c &= \frac{qB}{m} = \frac{v}{r} = \frac{\frac{2\pi r}{T}}{r} \Rightarrow \frac{qB}{m} = \frac{2\pi}{T}
+            \intertext{Kryssmultipliserer og løser for T:}
+            T &= \frac{2\pi m}{qB}
+        \end{align*}
+        Løser vi denne gitt partikkel vil vi få en omløps tid på $T=1.4s$ som er eksakt lik den numeriske verdien fra deloppgave b.
+    \end{tabbed}
+\newpage
+\sectionundertitle{d.) Endring av initsial hastighet, v=(5,0,2)}
+    \begin{tabbed}
+        Plot av partikkelens bane i 3D:
+    \end{tabbed}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.6]{B-field_spiral_d.png}
+        \caption*{$v0=(5,0,2)$}
+    \end{figure}
+    \begin{tabbed}
+        Man ser her at banen til partikkelen blir en spiral dersom man gir den en fart i z-retning i tillegg.
+    \end{tabbed}
+\newpage
+\sectiontitle{3.) Partikkel i syklotron}
+\sectionundertitle{a.) Bevegelse i kombinert E- og B-felt}
+    \begin{tabbed}
+        Et plot av banen til partikkelen ser slik ut:
+    \end{tabbed}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.6]{cyclotrone_3d.png}
+        \caption*{Partikkel i syklotron}
+    \end{figure}
+    \begin{tabbed}
+        Vi ser her at radien øker mindre for hvert omløp. Dette skyldes at magnetfeltet ikke gir noen akselerasjon(og dermed ingen økning i fart), mens E-feltet i midten gir en akselerasjon. Dette betyr at hastigheten øker for hvert omløp, av sentripetalkraften vet vi at hastigheten er opphøyd i andre, mens radien er i første. Dette betyr at selvom hastigheten øker, vil ikke radien øke like fort i forhold.
+    \end{tabbed}
+\newpage    
+\sectionundertitle{b.) Sett inn $\mathbf{r_D}$}
+        \begin{tabbed}
+            Implementerer vi at syklotronen faktisk har en radius blir plottet for position of hastighet per tid slik:
+        \end{tabbed}
+        \begin{figure}[H]
+            \centering      
+            \includegraphics[scale=0.6]{cyclotrone_xyz.png}
+            \caption*{Partikkel i syklotron}
+        \end{figure}\vsp
+\sectionundertitle{c.) Hastighet partikkel forlater syklotron med}
+    \begin{tabbed}
+        Hastigheten partikkelen forlater syklotronen med er ca. $2.40\; \mbox{m/s}$. Bruker samme program som over.
+    \end{tabbed}\vsp
+\sectionundertitle{d.) Kinetisk energi til partikkel}
+    \begin{tabbed}
+        Starter med å sette sentripetalkraft lik magnetisk kraft siden denne er fortsatt eneste kraften som virker i magnetfeltet:
+        \begin{align*}
+            m\frac{v^2}{r} &= qBv \Rightarrow v = \frac{qBr}{m}
+            \intertext{Setter denne inn i formel for kinetisk energi $E_K = \frac{1}{2}mv^2$:}
+            E_K =& \frac{1}{2}mv^2 = \frac{1}{2}m\frac{q^2B^2r^2}{m^2}\\
+            E_K &= \frac{1}{2}\frac{q^2B^2r^2}{m}
+        \end{align*}
+        Bruker vi denne formelen på et proton med $B=1T$, $r=1m$ får vi at den kinetiske energien er: $48\; \mbox{MeV}$\vsp\\
+        Vi kan sammenligne denne verdien med hvileenergien til et proton, gitt ved $E=mc^2$. Denne er ca:
+        \begin{align*}
+            E &= 938\; \mbox{MeV}
+        \end{align*}
+        Ser her at den kinetiske energien er rundt 5\% av hvilemassen. En tommelfinger regel er at man burde regne relativistisk når energinivåene når ca. 10\% av hvilemassen slik at her er det tilsynelatende greit å regne relativisme.
+    \end{tabbed}\vsp
+\sectionundertitle{e.) Energi for hvert omløp}
+    \begin{tabbed}
+        Vi vet at partikkelen passerer E-feltet 2 ganger per omløp og vi vet at energien en partikkel har i et E-felt er gitt ved $E=qV$, der q er ladningen og V er spenningen(potensialforskjellen). Merk at dette er for homogent E-felt mellom to parallelle flater(some er situasjonen i syklotronen gitt i oppgaven). Vi har allerede funnet den kinetiske energien i forrige deloppgave slik at likningen som må løses er gitt ved:
+        \begin{align*}
+            2NqV &= E_K \Rightarrow N = \frac{E_K}{2qV}
+            \intertext{Her er N antall omløp. Setter vi inn den kinetiske energien funnet i deloppgave d og anslår spenningen til å være 100kV vil protonet gå:}
+            N &= 240
+        \end{align*}
+        Ser her at i en syklotron med 1m radius og magnetfelt på 1T vil et proton gå 240 omdreininger før den unnslipper.\vsp\\
+        Vi vet at frekvensen på E-feltet må være likt syklotronfrekvensen(den resonerende). Da er frekvensen:
+        \begin{align*}
+            f &= \frac{qB}{2\pi m} = 1.5\times 10^7\; \mbox{Hz}
+        \end{align*}
+        Vi kan også utlede den denne frekvensen ut i fra at frekvensen er gitt ved $\frac{1}{T}$. Formelen for T er utledet i foregående oppgave. Med dette er frekvensen:
+        \begin{align*}
+            f = \frac{1}{T} &= \frac{1}{\frac{2\pi m}{qB}} = \frac{qB}{2\pi m}
+        \end{align*}
+    \end{tabbed}
+\end{document}
